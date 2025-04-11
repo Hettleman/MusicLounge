@@ -1,8 +1,8 @@
 var chromaticScale = ["a", "a#", "b", "c", "c#", "d", "d#", "e", "f", "f#", "g", "g#"];
 var usersNotes = [
-    {note: "g", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""},
     {note: "b", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""},
-    {note: "d", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""}
+    {note: "d", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""},
+    {note: "f#", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""}
 ];
 
 function findNotePosition(note) {
@@ -86,6 +86,7 @@ function findChord() {
     findClosestIntervalsForAllUsersNotes();
     console.log(usersNotes);
     console.log(checkForMajorChord());
+    console.log(checkForMinorChord());
 }
 
 function checkForMajorChord() {
@@ -94,6 +95,17 @@ function checkForMajorChord() {
         console.log("noteOnLeftDistance: " + note.noteOnLeftDistance + "       noteOnRightDistance: " + note.noteOnRightDistance)
         if (note.noteOnLeftDistance == 4 && note.noteOnRightDistance == 3) {
             return note.noteOnLeft + " major";
+        }
+    };
+    return false;
+}
+
+function checkForMinorChord() {
+    for (let i = 0; i < usersNotes.length; i++) {
+        let note = usersNotes[i]
+        console.log("noteOnLeftDistance: " + note.noteOnLeftDistance + "       noteOnRightDistance: " + note.noteOnRightDistance)
+        if (note.noteOnLeftDistance == 3 && note.noteOnRightDistance == 4) {
+            return note.noteOnLeft + " minor";
         }
     };
     return false;
