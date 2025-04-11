@@ -350,7 +350,7 @@ body {
  .c:nth-of-type(2) { top: 147px; left: 35px; }
  .c:nth-of-type(3) { top: 620px; left: 35px; }
  .c:nth-of-type(4) { top: 470px; left: 57px; }
- .c:nth-of-type(5) { top: 90px; left: 101px; }
+ .c:nth-of-type(5) { top: 260px; left: 79px; }
  .c:nth-of-type(6) { top: 620px; left: 79px; }
  .c:nth-of-type(7) { top: 35px; left: 101px; }
  .c:nth-of-type(8) { top: 560px; left: 101px; }
@@ -374,11 +374,10 @@ body {
  .cs:nth-of-type(2) { top: 205px; left: 35px; }
  .cs:nth-of-type(3) { top: 500px; left: 57px; }
  .cs:nth-of-type(4) { top: 310px; left: 79px; }
- .cs:nth-of-type(5) { top: 260px; left: 79px; }
- .cs:nth-of-type(6) { top: 620px; left: 79px; }
- .cs:nth-of-type(7) { top: 35px; left: 101px; }
- .cs:nth-of-type(8) { top: 590px; left: 101px; }
- .cs:nth-of-type(9) { top: 440px; left: 123px; }
+ .cs:nth-of-type(5) { top: 620px; left: 79px; }
+ .cs:nth-of-type(6) { top: 90px; left: 101px; }
+ .cs:nth-of-type(7) { top: 590px; left: 101px; }
+ .cs:nth-of-type(8) { top: 440px; left: 123px; }
 
  .D-Notes {
     position: absolute;
