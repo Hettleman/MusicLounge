@@ -1,9 +1,41 @@
-var chromaticScale = ["a", "a#", "b", "c", "c#", "d", "d#", "e", "f", "f#", "g", "g#"];
-var usersNotes = [
-    {note: "b", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""},
-    {note: "d", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""},
-    {note: "f#", notePosition: -1, noteOnRightDistance: 12, noteOnRight: "", noteOnLeftDistance: 12, noteOnLeft: ""}
-];
+var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
+var usersNotes = [];
+let chordLabelText = document.getElementById("chord-label-text");
+
+function createEventListeners() {
+    for (let i = 0; i < chromaticScale.length; i++) {
+        let currentNoteName = chromaticScale[i];
+        let currentNoteGroup = document.getElementsByClassName(chromaticScale[i]);
+        for (let j = 0; j < currentNoteGroup.length; j++) {
+            currentNoteGroup[j].addEventListener('click', function() {
+                currentNoteGroup[j].style.backgroundColor = "blue";
+                updateUsersNotes(currentNoteName);
+                displayChord();
+            });
+        }
+    }
+}
+
+function updateUsersNotes(note) {
+    let newNote = {
+        note: note, 
+        notePosition: -1, 
+        noteOnRightDistance: 12, 
+        noteOnRight: "", 
+        noteOnLeftDistance: 12, 
+        noteOnLeft: ""
+    }
+    usersNotes.push(newNote);
+    findAllUserNotePositions();
+    findClosestIntervalsForAllUsersNotes();
+}
+
+
+
+function getNotesFromWebsiteInteraction() {
+    createEventListeners();
+
+}
 
 function findNotePosition(note) {
     for (let i = 0; i < chromaticScale.length; i++) {
@@ -23,10 +55,7 @@ function findAllUserNotePositions() {
 function findClosestIntervalsForAllUsersNotes() {
     usersNotes.forEach(noteObject => {
         let currentNotePosition = noteObject.notePosition;
-        console.log(noteObject.note + ": current note position" + currentNotePosition);
         let intervalCalculationsObject = doIntervalCalculationsForANote(currentNotePosition);
-        console.log("fbwroivberovherobnerobnoerbnoreb")
-        console.log()
         updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject)
     });
 }
@@ -40,7 +69,6 @@ function doIntervalCalculationsForANote(currentNotePosition) {
     usersNotes.forEach(noteObject => {
         intervalDistance = noteObject.notePosition-currentNotePosition;
         intervalDistance = reinterpretHighNoteIntervals(intervalDistance);
-        console.log("intervalDistance " + intervalDistance + "         closestLeftInterval" + closestLeftInterval)
         if (Math.abs(intervalDistance) < Math.abs(closestLeftInterval) && intervalDistance != 0 && intervalDistance < 0) {
             closestLeftInterval = intervalDistance;
             noteOnLeft = noteObject.note;
@@ -50,11 +78,6 @@ function doIntervalCalculationsForANote(currentNotePosition) {
             noteOnRight = noteObject.note;
         }
         secondClosestInterval = Math.min(closestRightInterval, closestLeftInterval);
-        // console.log("currentNotePosition " + currentNotePosition + "        other note" + noteObject.notePosition);
-        // console.log("intervalDistance " + intervalDistance + "     secondClosestInterval " + secondClosestInterval);
-        console.log("closestLeftInterval " + closestLeftInterval);
-        console.log("closestRightInterval " + closestRightInterval);
-        console.log(" ");
     })
     let intervalCalculationsObject = {
         closestLeftInterval: Math.abs(closestLeftInterval),
@@ -62,7 +85,6 @@ function doIntervalCalculationsForANote(currentNotePosition) {
         noteOnLeft: noteOnLeft,
         noteOnRight: noteOnRight
     }
-    console.log(intervalCalculationsObject);
     return intervalCalculationsObject;
 }
 
@@ -81,18 +103,24 @@ function updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject) {
     noteObject.noteOnRight = intervalCalculationsObject.noteOnRight
 }
 
+
 function findChord() {
-    findAllUserNotePositions();
-    findClosestIntervalsForAllUsersNotes();
-    console.log(usersNotes);
-    console.log(checkForMajorChord());
-    console.log(checkForMinorChord());
+    getNotesFromWebsiteInteraction();
+}
+
+function displayChord() {
+    if (checkForMajorChord()) {
+        console.log(checkForMajorChord());
+        chordLabelText.textContent = checkForMajorChord();
+    } else if (checkForMinorChord()) {
+        chordLabelText.textContent = checkForMinorChord();
+        console.log(checkForMinorChord());
+    }
 }
 
 function checkForMajorChord() {
     for (let i = 0; i < usersNotes.length; i++) {
         let note = usersNotes[i]
-        console.log("noteOnLeftDistance: " + note.noteOnLeftDistance + "       noteOnRightDistance: " + note.noteOnRightDistance)
         if (note.noteOnLeftDistance == 4 && note.noteOnRightDistance == 3) {
             return note.noteOnLeft + " major";
         }
@@ -103,13 +131,14 @@ function checkForMajorChord() {
 function checkForMinorChord() {
     for (let i = 0; i < usersNotes.length; i++) {
         let note = usersNotes[i]
-        console.log("noteOnLeftDistance: " + note.noteOnLeftDistance + "       noteOnRightDistance: " + note.noteOnRightDistance)
         if (note.noteOnLeftDistance == 3 && note.noteOnRightDistance == 4) {
             return note.noteOnLeft + " minor";
         }
     };
     return false;
 }
+
+
 
 findChord()
 
