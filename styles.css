@@ -1,5 +1,13 @@
 body {
-    background-color: lightblue;
+    background-color: white;
+}
+
+.whole-guitar {
+    height: 75vh;
+    height: 100%;
+    transform: scale(0.95); /* Adjust as needed */
+    transform-origin: top center;
+    position: relative;
 }
 
 .headstock-triangle {
@@ -25,6 +33,7 @@ body {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
 }
 
+
 .guitar-body{
     position: absolute;
     background-color:rgb(160, 123, 75);
@@ -33,7 +42,7 @@ body {
     width: 550px;
     height: 200px;
     top: 660px;
-    transform: translate(-50%, 0%);
+    transform: translate(-50%, -35%);
     border-top-left-radius: 150px;
     border-top-right-radius: 150px;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -229,6 +238,23 @@ body {
     border-radius: 7.5px;
     background-color: red;
  }
+
+ .fun-text {
+    position: relative;
+    font-family: 'Fascinate Inline', cursive;
+    color: white;
+    font-size: 100px;
+    background-color: olive;
+    text-align: center;
+    height: 25%;
+    z-index: 10;
+  }
+  
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
 
  .g:nth-of-type(1) { top: 147px; left: 13px; }
  .g:nth-of-type(2) { top: 620px; left: 13px; }
