@@ -1,6 +1,7 @@
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
 var usersNotes = [];
 let chordLabelText = document.getElementById("chord-label-text");
+let notesDisplay = document.querySelector('.notes');
 var chordObject = {
     usersNotes: usersNotes,
     root: "",
@@ -22,6 +23,11 @@ function createEventListeners() {
     }
 }
 
+function displayUsersNotes() {
+    const noteNames = usersNotes.map(n => n.note.toUpperCase());
+    notesDisplay.textContent = "Notes: " + noteNames.join(", ");
+}
+
 function updateUsersNotes(note) {
     let newNote = {
         note: note, 
@@ -34,6 +40,7 @@ function updateUsersNotes(note) {
     usersNotes.push(newNote);
     findAllUserNotePositions();
     findClosestIntervalsForAllUsersNotes();
+    displayUsersNotes();
 }
 
 

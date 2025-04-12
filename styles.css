@@ -150,8 +150,8 @@ body {
 .dot:nth-child(2) {top: 360px;}
 .dot:nth-child(3) {top: 440px;}
 .dot:nth-child(5) {top: 530px;}
-.dot:nth-child(5) {top: 530px; left: 35px;}
-.dot:nth-child(6) {top: 530px; left: 102px;}
+.dot:nth-child(5) {top: 530px; left: 25px;}
+.dot:nth-child(6) {top: 530px; left: 112px;}
 .dot:nth-child(7) {top: 620px;}
 
 
@@ -531,10 +531,10 @@ body {
 
 .notes {
     position: absolute;
-    width: 175px;
+    width: 200px;
     height: 50px;
     top: 115px;
-    left: 39px;
+    left: 27px;
     background-color: olive;
     display: grid;
     place-items: center;
