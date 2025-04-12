@@ -455,7 +455,24 @@ body {
  .ds:nth-of-type(6) { top: 205px; left: 101px; }
 .ds:nth-of-type(7) { top: 500px; left: 123px; }
 
-/* 
+.barre-chords{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+#capo {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    background: olive;;
+    left: -20px;
+    top: 35px;
+    cursor: ew-resize;
+    z-index: 10;
+}
+
+/*
 0 fret: 0
 1 fret: 35
 2 fret: 90
