@@ -117,7 +117,7 @@ function updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject) {
 }
 
 
-function findChord() {
+function findChord() { 
     getNotesFromWebsiteInteraction();
 }
 
@@ -135,9 +135,10 @@ function displayChord() {
 
 function updateChordObject(functionName, mood) {
     chordObject.usersNotes = usersNotes;
-    chordObject.root = checkForMajorChord();
+    chordObject.root = functionName;
     chordObject.mood = mood;
     chordlength = usersNotes.length;
+    console.log("CHORD OBJECRT " + chordObject.root)
 }
 
 function checkForMajorChord() {
