@@ -155,7 +155,7 @@ body {
 .dot:nth-child(7) {top: 620px;}
 
 
-/* ------- RED DOTS -------- */
+/* ------- silver DOTS -------- */
 .E-Notes {
     position: absolute;
     width: 100%;
@@ -191,7 +191,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .f:nth-of-type(1) { top: 35px; left: 13px; }
@@ -215,7 +215,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .fs:nth-of-type(1) { top: 90px; left: 13px; }
@@ -238,7 +238,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .fun-text {
@@ -279,7 +279,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .gs:nth-of-type(1) { top: 205px; left: 13px; }
@@ -301,7 +301,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .a:nth-of-type(1) { top: 260px; left: 13px; }
@@ -324,7 +324,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .as:nth-of-type(1) { top: 310px; left: 13px; }
@@ -347,7 +347,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .b:nth-of-type(1) { top: 360px; left: 13px; }
@@ -371,7 +371,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .c:nth-of-type(1) { top: 405px; left: 13px; }
@@ -395,7 +395,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .cs:nth-of-type(1) { top: 440px; left: 13px; }
@@ -418,7 +418,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
 
  .d:nth-of-type(1) { top: 470px; left: 13px; }
@@ -442,8 +442,10 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: red;
+    background-color: silver;
  }
+
+
 
  .ds:nth-of-type(1) { top: 500px; left: 13px; }
  .ds:nth-of-type(2) { top: 310px; left: 35px; }
@@ -479,6 +481,7 @@ body {
     background-color: grey;
     top: 75px;
     left: 65%;
+    border-radius: 15px;
 }
 
 .top-part{
@@ -487,6 +490,12 @@ body {
     height: 50px;
     background-color: darkgray;
     text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 30px;
 }
 
 .strum{
@@ -497,7 +506,25 @@ body {
     left: 50px;
     background-color: red;
     color: white;
-    text-align: center;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    font-size: 30px;
+}
+
+.Chord {
+    position: absolute;
+    width: 125px;
+    height: 125px;
+    top: 220px;
+    left: 62px;
+    background-color: darkgray;
+    color: white;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    font-size: 25px;
+
 }
 
 
