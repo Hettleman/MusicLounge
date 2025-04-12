@@ -1,6 +1,12 @@
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
 var usersNotes = [];
 let chordLabelText = document.getElementById("chord-label-text");
+var chordObject = {
+    usersNotes: usersNotes,
+    root: "",
+    mood: "",
+    chordLength: 0
+}
 
 function createEventListeners() {
     for (let i = 0; i < chromaticScale.length; i++) {
@@ -8,7 +14,7 @@ function createEventListeners() {
         let currentNoteGroup = document.getElementsByClassName(chromaticScale[i]);
         for (let j = 0; j < currentNoteGroup.length; j++) {
             currentNoteGroup[j].addEventListener('click', function() {
-                currentNoteGroup[j].style.backgroundColor = "blue";
+                currentNoteGroup[j].style.backgroundColor = "#d0d000";
                 updateUsersNotes(currentNoteName);
                 displayChord();
             });
@@ -110,19 +116,28 @@ function findChord() {
 
 function displayChord() {
     if (checkForMajorChord()) {
+        updateChordObject(checkForMajorChord(), "major")
         console.log(checkForMajorChord());
-        chordLabelText.textContent = checkForMajorChord();
+        chordLabelText.textContent = checkForMajorChord() + "major";
     } else if (checkForMinorChord()) {
-        chordLabelText.textContent = checkForMinorChord();
+        updateChordObject(checkForMinorChord(), "minor")
+        chordLabelText.textContent = checkForMinorChord() + "minor";
         console.log(checkForMinorChord());
     }
+}
+
+function updateChordObject(functionName, mood) {
+    chordObject.usersNotes = usersNotes;
+    chordObject.root = checkForMajorChord();
+    chordObject.mood = mood;
+    chordlength = usersNotes.length;
 }
 
 function checkForMajorChord() {
     for (let i = 0; i < usersNotes.length; i++) {
         let note = usersNotes[i]
         if (note.noteOnLeftDistance == 4 && note.noteOnRightDistance == 3) {
-            return note.noteOnLeft + " major";
+            return note.noteOnLeft;
         }
     };
     return false;
