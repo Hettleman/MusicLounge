@@ -1,5 +1,6 @@
 body {
-    background-color: white;
+    background-color: #e3d1b8;
+    filter: sepia(20%);
 }
 
 .whole-guitar {
@@ -165,8 +166,8 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: #C0C0C0;
+    border-color: olive;
  }
 
  .e:nth-of-type(1) { top: 0px; left: 13px; }
@@ -190,8 +191,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .f:nth-of-type(1) { top: 35px; left: 13px; }
@@ -215,8 +215,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .fs:nth-of-type(1) { top: 90px; left: 13px; }
@@ -239,8 +238,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .fun-text {
@@ -281,8 +279,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .gs:nth-of-type(1) { top: 205px; left: 13px; }
@@ -304,8 +301,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .a:nth-of-type(1) { top: 260px; left: 13px; }
@@ -328,8 +324,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .as:nth-of-type(1) { top: 310px; left: 13px; }
@@ -352,8 +347,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .b:nth-of-type(1) { top: 360px; left: 13px; }
@@ -377,8 +371,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .c:nth-of-type(1) { top: 405px; left: 13px; }
@@ -402,8 +395,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .cs:nth-of-type(1) { top: 440px; left: 13px; }
@@ -426,8 +418,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .d:nth-of-type(1) { top: 470px; left: 13px; }
@@ -451,8 +442,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: black;
-    /* opacity: .5; */
+    background-color: red;
  }
 
  .ds:nth-of-type(1) { top: 500px; left: 13px; }
