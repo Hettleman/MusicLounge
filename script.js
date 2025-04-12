@@ -33,6 +33,10 @@ document.addEventListener('mousemove', function (e) {
     box.style.width = newWidth + 'px';
   }
 
+  if (startY==0){
+    box.style.top = startY + 'px';
+  }
+
   // Allow vertical movement
   box.style.top = newTop + 'px';
 });

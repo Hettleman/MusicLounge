@@ -465,11 +465,20 @@ body {
     position: absolute;
     width: 15px;
     height: 15px;
-    background: olive;;
+    background: rgb(165, 169, 180);
+    background-color: black;
     left: -20px;
     top: 35px;
     cursor: ew-resize;
     z-index: 10;
+}
+
+.capo-text{
+   position: absolute;
+   width: 80px;
+   height: 10px;
+   left: -75px;
+   top: 35px;
 }
 
 /*
