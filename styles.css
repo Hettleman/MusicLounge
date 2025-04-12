@@ -480,6 +480,37 @@ body {
 13 fret: 560
 14 fret: 590
 15 fret: 620
+*/
+
+.Display{
+    position: absolute;
+    width: 250px;
+    height: 450px;
+    background-color: grey;
+    top: 75px;
+    left: 65%;
+}
+
+.top-part{
+    position: absolute;
+    width: 100%;
+    height: 50px;
+    background-color: darkgray;
+    text-align: center;
+}
+
+.strum{
+    position: absolute;
+    width: 150px;
+    height: 50px;
+    top: 375px;
+    left: 50px;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
+
+
 
 
 
