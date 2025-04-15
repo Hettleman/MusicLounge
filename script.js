@@ -172,8 +172,7 @@ function displayChord() {
         chordLabelText.textContent = checkForMajorChord() + "major";
     } else if (checkForMinorChord()) {
         updateChordObject(checkForMinorChord(), "minor")
-        chordLabelText.textContent = checkForMinorChord() + "minor";
-        console.log(checkForMinorChord());
+        chordLabelText.textContent = checkForMinorChord();        console.log(checkForMinorChord());
     }
 }
 
