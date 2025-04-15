@@ -1,41 +1,106 @@
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
+var fretOneNotes = ["F", "C", "GS", "DS", "AS", "F"]
+var fretTwoNotes = ["FS", "CS", "A", "E", "B", "FS"]
 var usersNotes = [];
+let chordObject = {
+    usersNotes: [],
+    root: "",
+    mood: ""
+  };
 let chordLabelText = document.getElementById("chord-label-text");
-let notesDisplay = document.querySelector('.notes');
+let String1Note = document.querySelector('.String-1-Note');
+let String2Note = document.querySelector('.String-2-Note');
+let String3Note = document.querySelector('.String-3-Note');
+let String4Note = document.querySelector('.String-4-Note');
+let String5Note = document.querySelector('.String-5-Note');
+let String6Note = document.querySelector('.String-6-Note');
 
 function createEventListeners() {
     for (let i = 0; i < chromaticScale.length; i++) {
         let currentNoteName = chromaticScale[i];
-        let currentNoteGroup = document.getElementsByClassName(chromaticScale[i]);
+        let currentNoteGroup = document.getElementsByClassName(currentNoteName);
+
         for (let j = 0; j < currentNoteGroup.length; j++) {
-            currentNoteGroup[j].addEventListener('click', function() {
+            currentNoteGroup[j].addEventListener('click', function () {
+                const stringNum = currentNoteGroup[j].getAttribute('data-string');
+
+                // Check if the clicked note is already selected
+                let existingNote = usersNotes.find(n => n.string === stringNum && n.note === currentNoteName);
+
+                if (existingNote) {
+                    // Deselect the note
+                    currentNoteGroup[j].style.backgroundColor = "silver";
+                    
+                    // Remove from usersNotes
+                    usersNotes = usersNotes.filter(n => !(n.string === stringNum && n.note === currentNoteName));
+
+                    // Clear display box
+                    const displayBox = document.querySelector(`.String-${stringNum}-Note`);
+                    if (displayBox) {
+                        displayBox.textContent = "";
+                    }
+
+                    // Update chord label
+                    displayChord();
+                    return; // Exit early
+                }
+
+                // Deselect any previous note on the same string
+                let oldNote = usersNotes.find(n => n.string === stringNum);
+                if (oldNote) {
+                    let oldElements = document.getElementsByClassName(oldNote.note);
+                    for (let k = 0; k < oldElements.length; k++) {
+                        if (oldElements[k].getAttribute('data-string') === stringNum) {
+                            oldElements[k].style.backgroundColor = "silver";
+                        }
+                    }
+                }
+
+                // Highlight the newly selected note
                 currentNoteGroup[j].style.backgroundColor = "#d0d000";
-                updateUsersNotes(currentNoteName);
+
+                // Update display box
+                const displayBox = document.querySelector(`.String-${stringNum}-Note`);
+                if (displayBox) {
+                    displayBox.textContent = currentNoteName.toUpperCase();
+                }
+
+                // Update usersNotes
+                updateUsersNotes(currentNoteName, stringNum);
+
+                // Update chord label
                 displayChord();
             });
         }
     }
 }
 
-function displayUsersNotes() {
-    const noteNames = usersNotes.map(n => n.note.toUpperCase());
-    notesDisplay.textContent = "Notes: " + noteNames.join(", ");
+
+
+
+// function displayUsersNotes() {
+//     const noteNames = usersNotes.map(n => n.note.toUpperCase());
+// }
+
+function updateUsersNotes(note, stringNum) {
+    // Remove old note on this string, if any
+    usersNotes = usersNotes.filter(n => n.string !== stringNum);
+
+    let newNote = {
+        note: note,
+        string: stringNum,
+        notePosition: findNotePosition(note),
+        noteOnRightDistance: 12,
+        noteOnRight: "",
+        noteOnLeftDistance: 12,
+        noteOnLeft: ""
+    };
+
+    usersNotes.push(newNote);
+    findClosestIntervalsForAllUsersNotes();
+    // displayUsersNotes();
 }
 
-function updateUsersNotes(note) {
-    let newNote = {
-        note: note, 
-        notePosition: -1, 
-        noteOnRightDistance: 12, 
-        noteOnRight: "", 
-        noteOnLeftDistance: 12, 
-        noteOnLeft: ""
-    }
-    usersNotes.push(newNote);
-    findAllUserNotePositions();
-    findClosestIntervalsForAllUsersNotes();
-    displayUsersNotes();
-}
 
 
 
