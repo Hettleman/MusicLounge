@@ -1,6 +1,4 @@
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
-var fretOneNotes = ["F", "C", "GS", "DS", "AS", "F"]
-var fretTwoNotes = ["FS", "CS", "A", "E", "B", "FS"]
 var usersNotes = [];
 let chordObject = {
     usersNotes: [],
@@ -29,6 +27,7 @@ function createEventListeners() {
 
                 if (existingNote) {
                     // Deselect the note
+                    let capoNote = usersNotes.find(n => n.string === stringNum && n.source === "capo");
                     currentNoteGroup[j].style.backgroundColor = "silver";
                     
                     // Remove from usersNotes
@@ -39,6 +38,7 @@ function createEventListeners() {
                     if (displayBox) {
                         displayBox.textContent = "";
                     }
+                    
 
                     // Update chord label
                     displayChord();
