@@ -3,56 +3,6 @@ var usersNotes = [];
 let chordLabelText = document.getElementById("chord-label-text");
 let notesDisplay = document.querySelector('.notes');
 
-const box = document.getElementById('capo');
-let isDragging = false;
-let startX = 0;
-let startY = 0;
-let startWidth = 0;
-let startTop = 0;
-
-box.addEventListener('mousedown', function (e) {
-  isDragging = true;
-  startX = e.clientX;
-  startY = e.clientY;
-  startWidth = box.offsetWidth;
-  startTop = box.offsetTop;
-  document.body.style.userSelect = 'none';
-});
-
-document.addEventListener('mousemove', function (e) {
-  if (!isDragging) return;
-
-  const deltaX = e.clientX - startX;
-  const deltaY = e.clientY - startY;
-
-  const newWidth = startWidth + deltaX;
-  const newTop = startTop + deltaY;
-
-  // Limit width
-  if (newWidth > 15 && newWidth < 191) {
-    box.style.width = newWidth + 'px';
-  }
-
-  if (startY==0){
-    box.style.top = startY + 'px';
-  }
-
-  // Allow vertical movement
-  box.style.top = newTop + 'px';
-});
-
-document.addEventListener('mouseup', function () {
-  isDragging = false;
-  document.body.style.userSelect = '';
-});
-
-var chordObject = {
-    usersNotes: usersNotes,
-    root: "",
-    mood: "",
-    chordLength: 0
-}
-
 function createEventListeners() {
     for (let i = 0; i < chromaticScale.length; i++) {
         let currentNoteName = chromaticScale[i];

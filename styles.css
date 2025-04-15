@@ -166,8 +166,7 @@ body {
     width: 15px;
     height: 15px;
     border-radius: 7.5px;
-    background-color: #C0C0C0;
-    border-color: olive;
+    background-color: silver;
  }
 
  .e:nth-of-type(1) { top: 0px; left: 13px; }
@@ -355,10 +354,9 @@ body {
  .b:nth-of-type(3) { top: 590px; left: 35px; }
  .b:nth-of-type(4) { top: 440px; left: 57px; }
  .b:nth-of-type(5) { top: 205px; left: 79px; }
- .b:nth-of-type(6) { top: 620px; left: 79px; }
- .b:nth-of-type(7) { top: 0px; left: 101px; }
- .b:nth-of-type(8) { top: 530px; left: 101px; }
- .b:nth-of-type(9) { top: 360px; left: 123px; }
+ .b:nth-of-type(6) { top: 0px; left: 101px; }
+ .b:nth-of-type(7) { top: 530px; left: 101px; }
+ .b:nth-of-type(8) { top: 360px; left: 123px; }
 
  .C-Notes {
     position: absolute;
@@ -379,10 +377,9 @@ body {
  .c:nth-of-type(3) { top: 620px; left: 35px; }
  .c:nth-of-type(4) { top: 470px; left: 57px; }
  .c:nth-of-type(5) { top: 260px; left: 79px; }
- .c:nth-of-type(6) { top: 620px; left: 79px; }
- .c:nth-of-type(7) { top: 35px; left: 101px; }
- .c:nth-of-type(8) { top: 560px; left: 101px; }
- .c:nth-of-type(9) { top: 408px; left: 123px; }
+ .c:nth-of-type(6) { top: 35px; left: 101px; }
+ .c:nth-of-type(7) { top: 560px; left: 101px; }
+ .c:nth-of-type(8) { top: 408px; left: 123px; }
 
  .Cs-Notes {
     position: absolute;
@@ -402,10 +399,9 @@ body {
  .cs:nth-of-type(2) { top: 205px; left: 35px; }
  .cs:nth-of-type(3) { top: 500px; left: 57px; }
  .cs:nth-of-type(4) { top: 310px; left: 79px; }
- .cs:nth-of-type(5) { top: 620px; left: 79px; }
- .cs:nth-of-type(6) { top: 90px; left: 101px; }
- .cs:nth-of-type(7) { top: 590px; left: 101px; }
- .cs:nth-of-type(8) { top: 440px; left: 123px; }
+ .cs:nth-of-type(5) { top: 90px; left: 101px; }
+ .cs:nth-of-type(6) { top: 590px; left: 101px; }
+ .cs:nth-of-type(7) { top: 440px; left: 123px; }
 
  .D-Notes {
     position: absolute;
@@ -453,7 +449,7 @@ body {
  .ds:nth-of-type(4) { top: 560px; left: 57px; }
  .ds:nth-of-type(5) { top: 405px; left: 79px; }
  .ds:nth-of-type(6) { top: 205px; left: 101px; }
-.ds:nth-of-type(7) { top: 500px; left: 123px; }
+ .ds:nth-of-type(7) { top: 500px; left: 123px; }
 
 .barre-chords{
     position: absolute;
@@ -467,7 +463,7 @@ body {
     height: 15px;
     background: rgb(165, 169, 180);
     background-color: black;
-    left: -20px;
+    left: 158px;
     top: 35px;
     cursor: ew-resize;
     z-index: 10;
