@@ -124,7 +124,9 @@ document.addEventListener('mousemove', function (e) {
         displayBox.textContent = note;
       }
 
-      updateUsersNotes(note.toLowerCase(), String(stringNumber));
+    //   updateUsersNotes(note.toLowerCase(), String(stringNumber));
+    updateUsersNotes(note.toLowerCase(), String(stringNumber), "capo");
+
     });
 
     displayChord();

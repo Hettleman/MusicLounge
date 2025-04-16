@@ -1,4 +1,12 @@
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
+const defaultOpenNotes = {
+    "1": "e",
+    "2": "b",
+    "3": "g",
+    "4": "d",
+    "5": "a",
+    "6": "e"
+};
 var usersNotes = [];
 let chordObject = {
     usersNotes: [],
@@ -26,24 +34,32 @@ function createEventListeners() {
                 let existingNote = usersNotes.find(n => n.string === stringNum && n.note === currentNoteName);
 
                 if (existingNote) {
-                    // Deselect the note
-                    let capoNote = usersNotes.find(n => n.string === stringNum && n.source === "capo");
                     currentNoteGroup[j].style.backgroundColor = "silver";
-                    
-                    // Remove from usersNotes
+                
+                    // Remove the clicked note
                     usersNotes = usersNotes.filter(n => !(n.string === stringNum && n.note === currentNoteName));
-
-                    // Clear display box
+                
+                    // Look for capo note or revert to default
+                    const fallbackCapo = usersNotes.find(n => n.string === stringNum && n.source === "capo");
+                    const fallbackNote = fallbackCapo
+                        ? fallbackCapo.note
+                        : defaultOpenNotes[stringNum];
+                
+                    const fallbackSource = fallbackCapo ? "capo" : "default";
+                
+                    // Update display
                     const displayBox = document.querySelector(`.String-${stringNum}-Note`);
                     if (displayBox) {
-                        displayBox.textContent = "";
+                        displayBox.textContent = fallbackNote.toUpperCase();
                     }
-                    
-
-                    // Update chord label
+                
+                    // Add it back as original note
+                    updateUsersNotes(fallbackNote, stringNum, fallbackSource);
                     displayChord();
-                    return; // Exit early
+                    return;
                 }
+                
+                
 
                 // Deselect any previous note on the same string
                 let oldNote = usersNotes.find(n => n.string === stringNum);
@@ -82,7 +98,7 @@ function createEventListeners() {
 //     const noteNames = usersNotes.map(n => n.note.toUpperCase());
 // }
 
-function updateUsersNotes(note, stringNum) {
+function updateUsersNotes(note, stringNum, source = "user") {
     // Remove old note on this string, if any
     usersNotes = usersNotes.filter(n => n.string !== stringNum);
 
@@ -93,13 +109,14 @@ function updateUsersNotes(note, stringNum) {
         noteOnRightDistance: 12,
         noteOnRight: "",
         noteOnLeftDistance: 12,
-        noteOnLeft: ""
+        noteOnLeft: "",
+        source: source
     };
 
     usersNotes.push(newNote);
     findClosestIntervalsForAllUsersNotes();
-    // displayUsersNotes();
 }
+
 
 
 
