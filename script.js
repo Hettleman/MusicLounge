@@ -92,12 +92,6 @@ function createEventListeners() {
 }
 
 
-
-
-// function displayUsersNotes() {
-//     const noteNames = usersNotes.map(n => n.note.toUpperCase());
-// }
-
 function updateUsersNotes(note, stringNum, source = "user") {
     // Remove old note on this string, if any
     usersNotes = usersNotes.filter(n => n.string !== stringNum);
