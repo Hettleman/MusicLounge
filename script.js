@@ -1,3 +1,5 @@
+import * as chords from './chords.js';
+import * as intervals from './intervals.js';
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
 const defaultOpenNotes = {
     "1": "e",
@@ -7,12 +9,13 @@ const defaultOpenNotes = {
     "5": "a",
     "6": "e"
 };
-var usersNotes = [];
+let usersNotes = [];
 let chordObject = {
     usersNotes: [],
     root: "",
-    mood: ""
-  };
+    mood: "",
+    chordLength: 0
+};
 let chordLabelText = document.getElementById("chord-label-text");
 let String1Note = document.querySelector('.String-1-Note');
 let String2Note = document.querySelector('.String-2-Note');
@@ -108,17 +111,10 @@ function updateUsersNotes(note, stringNum, source = "user") {
     };
 
     usersNotes.push(newNote);
-    findClosestIntervalsForAllUsersNotes();
+    intervals.findClosestIntervalsForAllUsersNotes(usersNotes);
 }
 
 
-
-
-
-function getNotesFromWebsiteInteraction() {
-    createEventListeners();
-
-}
 
 function findNotePosition(note) {
     for (let i = 0; i < chromaticScale.length; i++) {
@@ -135,105 +131,111 @@ function findAllUserNotePositions() {
 }
 
 
-function findClosestIntervalsForAllUsersNotes() {
-    usersNotes.forEach(noteObject => {
-        let currentNotePosition = noteObject.notePosition;
-        let intervalCalculationsObject = doIntervalCalculationsForANote(currentNotePosition);
-        updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject)
-    });
-}
+// function findClosestIntervalsForAllUsersNotes() {
+//     usersNotes.forEach(noteObject => {
+//         let currentNotePosition = noteObject.notePosition;
+//         let intervalCalculationsObject = doIntervalCalculationsForANote(currentNotePosition);
+//         updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject)
+//     });
+// }
 
-function doIntervalCalculationsForANote(currentNotePosition) {
-    let closestRightInterval = 12;
-    let closestLeftInterval = 12;
-    let noteOnRight = "";
-    let noteOnLeft = "";
-    let intervalDistance;
-    usersNotes.forEach(noteObject => {
-        intervalDistance = noteObject.notePosition-currentNotePosition;
-        intervalDistance = reinterpretHighNoteIntervals(intervalDistance);
-        if (Math.abs(intervalDistance) < Math.abs(closestLeftInterval) && intervalDistance != 0 && intervalDistance < 0) {
-            closestLeftInterval = intervalDistance;
-            noteOnLeft = noteObject.note;
-        }
-        if (Math.abs(intervalDistance) < Math.abs(closestRightInterval) && intervalDistance != 0 && intervalDistance > 0) {
-            closestRightInterval = intervalDistance;
-            noteOnRight = noteObject.note;
-        }
-        secondClosestInterval = Math.min(closestRightInterval, closestLeftInterval);
-    })
-    let intervalCalculationsObject = {
-        closestLeftInterval: Math.abs(closestLeftInterval),
-        closestRightInterval: closestRightInterval,
-        noteOnLeft: noteOnLeft,
-        noteOnRight: noteOnRight
-    }
-    return intervalCalculationsObject;
-}
+// function doIntervalCalculationsForANote(currentNotePosition) {
+//     let closestRightInterval = 12;
+//     let closestLeftInterval = 12;
+//     let noteOnRight = "";
+//     let noteOnLeft = "";
+//     let intervalDistance;
+//     usersNotes.forEach(noteObject => {
+//         intervalDistance = noteObject.notePosition-currentNotePosition;
+//         intervalDistance = reinterpretHighNoteIntervals(intervalDistance);
+//         if (Math.abs(intervalDistance) < Math.abs(closestLeftInterval) && intervalDistance != 0 && intervalDistance < 0) {
+//             closestLeftInterval = intervalDistance;
+//             noteOnLeft = noteObject.note;
+//         }
+//         if (Math.abs(intervalDistance) < Math.abs(closestRightInterval) && intervalDistance != 0 && intervalDistance > 0) {
+//             closestRightInterval = intervalDistance;
+//             noteOnRight = noteObject.note;
+//         }
+//         // secondClosestInterval = Math.min(closestRightInterval, closestLeftInterval);
+//     })
+//     let intervalCalculationsObject = {
+//         closestLeftInterval: Math.abs(closestLeftInterval),
+//         closestRightInterval: closestRightInterval,
+//         noteOnLeft: noteOnLeft,
+//         noteOnRight: noteOnRight
+//     }
+//     return intervalCalculationsObject;
+// }
 
-function reinterpretHighNoteIntervals(intervalDistance) {
-    let sign = -1*(intervalDistance/Math.abs(intervalDistance));
-    if (Math.abs(intervalDistance) > 6) {
-        intervalDistance = sign*(12-Math.abs(intervalDistance));
-    }
-    return intervalDistance;
-}
+// function reinterpretHighNoteIntervals(intervalDistance) {
+//     let sign = -1*(intervalDistance/Math.abs(intervalDistance));
+//     if (Math.abs(intervalDistance) > 6) {
+//         intervalDistance = sign*(12-Math.abs(intervalDistance));
+//     }
+//     return intervalDistance;
+// }
 
-function updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject) {
-    noteObject.noteOnLeftDistance = intervalCalculationsObject.closestLeftInterval;
-    noteObject.noteOnRightDistance = intervalCalculationsObject.closestRightInterval;
-    noteObject.noteOnLeft = intervalCalculationsObject.noteOnLeft,
-    noteObject.noteOnRight = intervalCalculationsObject.noteOnRight
-}
+// function updateUsersNotesWithIntervals(noteObject, intervalCalculationsObject) {
+//     noteObject.noteOnLeftDistance = intervalCalculationsObject.closestLeftInterval;
+//     noteObject.noteOnRightDistance = intervalCalculationsObject.closestRightInterval;
+//     noteObject.noteOnLeft = intervalCalculationsObject.noteOnLeft,
+//     noteObject.noteOnRight = intervalCalculationsObject.noteOnRight
+// }
 
 
-function findChord() { 
-    getNotesFromWebsiteInteraction();
-}
+
+// function displayChord() {
+//     if (checkForMajorChord()) {
+//         updateChordObject(checkForMajorChord(), "major")
+//         console.log(checkForMajorChord());
+//         chordLabelText.textContent = checkForMajorChord() + "major";
+//     } else if (checkForMinorChord()) {
+//         updateChordObject(checkForMinorChord(), "minor")
+//         chordLabelText.textContent = checkForMinorChord();        
+//         console.log(checkForMinorChord());
+//     }
+// }
 
 function displayChord() {
-    if (checkForMajorChord()) {
-        updateChordObject(checkForMajorChord(), "major")
-        console.log(checkForMajorChord());
-        chordLabelText.textContent = checkForMajorChord() + "major";
-    } else if (checkForMinorChord()) {
-        updateChordObject(checkForMinorChord(), "minor")
-        chordLabelText.textContent = checkForMinorChord();        console.log(checkForMinorChord());
-    }
+    let chordObject = chords.findChord(usersNotes);
+    chordLabelText.textContent = chordObject.root + " " + chordObject.mood;
 }
 
-function updateChordObject(functionName, mood) {
-    chordObject.usersNotes = usersNotes;
-    chordObject.root = functionName;
-    chordObject.mood = mood;
-    chordlength = usersNotes.length;
-    console.log("CHORD OBJECRT " + chordObject.root)
-}
+// function updateChordObject(functionName, mood) {
+//     chordObject.usersNotes = usersNotes;
+//     chordObject.root = functionName;
+//     chordObject.mood = mood;
+//     chordlength = usersNotes.length;
+//     console.log("CHORD OBJECRT " + chordObject.root)
+// }
 
-function checkForMajorChord() {
-    for (let i = 0; i < usersNotes.length; i++) {
-        let note = usersNotes[i]
-        if (note.noteOnLeftDistance == 4 && note.noteOnRightDistance == 3) {
-            return note.noteOnLeft;
-        }
-    };
-    return false;
-}
+// function checkForMajorChord() {
+//     for (let i = 0; i < usersNotes.length; i++) {
+//         let note = usersNotes[i]
+//         if (note.noteOnLeftDistance == 4 && note.noteOnRightDistance == 3) {
+//             return note.noteOnLeft;
+//         }
+//     };
+//     return false;
+// }
 
-function checkForMinorChord() {
-    for (let i = 0; i < usersNotes.length; i++) {
-        let note = usersNotes[i]
-        if (note.noteOnLeftDistance == 3 && note.noteOnRightDistance == 4) {
-            return note.noteOnLeft + " minor";
-        }
-    };
-    return false;
-}
+// function checkForMinorChord() {
+//     for (let i = 0; i < usersNotes.length; i++) {
+//         let note = usersNotes[i]
+//         if (note.noteOnLeftDistance == 3 && note.noteOnRightDistance == 4) {
+//             return note.noteOnLeft + " minor";
+//         }
+//     };
+//     return false;
+// }
 
 
 
-findChord()
+createEventListeners();
 
 /////// Intervals ////////////
 // Maj: 4, 3
 // Min: 3, 4
+
+
+/////////// capo.js ///////////
