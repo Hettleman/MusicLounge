@@ -115,8 +115,8 @@ function createEventListeners() {
                     if (btn) btn.classList.remove('muted');
                 }
 
-                // Check if the clicked note is already selected
-                let existingNote = usersNotes.find(n => n.string === stringNum && n.note === currentNoteName);
+                // Check if the clicked note is already selected (by the user, not a default/capo entry)
+                let existingNote = usersNotes.find(n => n.string === stringNum && n.note === currentNoteName && n.source === 'user');
 
                 if (existingNote) {
                     currentNoteGroup[j].style.backgroundColor = "silver";
@@ -163,7 +163,7 @@ function createEventListeners() {
                 }
 
                 // Highlight the newly selected note
-                currentNoteGroup[j].style.backgroundColor = "#d0d000";
+                currentNoteGroup[j].style.backgroundColor = "#ffaa00";
 
                 // Update display box
                 const displayBox = document.querySelector(`.String-${stringNum}-Note`);
