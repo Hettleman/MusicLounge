@@ -1,5 +1,4 @@
 import * as chords from './chords.js';
-import * as intervals from './intervals.js';
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
 const defaultOpenNotes = {
     "1": "e",
@@ -90,7 +89,6 @@ function toggleMute(stringNum) {
         if (btn) btn.classList.add('muted');
         if (displayBox) displayBox.textContent = "";
         usersNotes = usersNotes.filter(n => n.string !== stringNum);
-        intervals.findClosestIntervalsForAllUsersNotes(usersNotes);
     }
 }
 
@@ -202,16 +200,10 @@ export function updateUsersNotes(note, stringNum, source = "user", fret = null) 
         note: note,
         string: stringNum,
         fret: fret,
-        notePosition: findNotePosition(note),
-        noteOnRightDistance: 12,
-        noteOnRight: "",
-        noteOnLeftDistance: 12,
-        noteOnLeft: "",
         source: source
     };
 
     usersNotes.push(newNote);
-    intervals.findClosestIntervalsForAllUsersNotes(usersNotes);
 }
 
 
@@ -297,8 +289,8 @@ function findAllUserNotePositions() {
 // }
 
 export function displayChord() {
-    let chordObject = chords.findChord(usersNotes);
-    chordLabelText.textContent = chordObject.root + " " + chordObject.mood;
+    const result = chords.findChord(usersNotes);
+    chordLabelText.textContent = result.label;
 }
 
 // function updateChordObject(functionName, mood) {
