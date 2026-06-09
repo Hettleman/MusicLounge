@@ -1,4 +1,12 @@
+html {
+    overflow: hidden;
+    height: 100%;
+}
+
 body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
     background-color: #e3d1b8;
     filter: sepia(20%);
 }
@@ -9,6 +17,7 @@ body {
     transform: scale(0.95); /* Adjust as needed */
     transform-origin: top center;
     position: relative;
+    padding-top: 42px;
 }
 
 .headstock-triangle {
@@ -109,7 +118,7 @@ body {
     width: 3px;
     height: 810px;
     background-color: rgb(230, 230, 230);
-    transform: translate(0, -10%);
+    transform: translate(0, -100px);
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   }
   
@@ -270,8 +279,9 @@ body {
     font-size: 100px;
     background-color: olive;
     text-align: center;
-    height: 25%;
+    height: auto;
     z-index: 10;
+    margin: 0;
   }
   
   @keyframes bounce {
