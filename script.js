@@ -323,6 +323,12 @@ export function displayChord() {
 
 
 
+// Initialize usersNotes with all open string defaults on load
+for (let i = 1; i <= 6; i++) {
+    const s = String(i);
+    updateUsersNotes(defaultOpenNotes[s], s, 'default');
+}
+
 createEventListeners();
 
 document.querySelectorAll('.mute-btn').forEach(btn => {
