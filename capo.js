@@ -1,3 +1,5 @@
+import { updateUsersNotes, displayChord, clearCapoNotes, getUserNote, setCapoState, setCapoFret, isStringMuted } from './script.js';
+
 const box = document.getElementById('capo');
 const fretboard = document.querySelector('.fretboard');
 
@@ -20,6 +22,8 @@ const capoNineNotes = ["CS", "FS", "B", "E", "GS", "CS"];
 const capoTenNotes = ["D", "G", "C", "F", "A", "D"];
 const capoElevenNotes = ["DS", "GS", "CS", "FS", "AS", "DS"];
 
+const capoTwelveNotes = ["E", "A", "D", "G", "B", "E"];
+
 const capoNotesMap = {
   1: capoOneNotes,
   2: capoTwoNotes,
@@ -32,10 +36,10 @@ const capoNotesMap = {
   9: capoNineNotes,
   10: capoTenNotes,
   11: capoElevenNotes,
-  12: capoOneNotes,
-  13: capoTwoNotes,
-  14: capoThreeNotes,
-  15: capoFourNotes,
+  12: capoTwelveNotes,
+  13: capoOneNotes,
+  14: capoTwoNotes,
+  15: capoThreeNotes,
 };
 
 function getFretNumberFromTop(top) {
@@ -65,14 +69,6 @@ function getTouchedStringsByWidth(width) {
   if (width < 129) return [6, 5, 4, 3];
   if (width < 151) return [6, 5, 4, 3, 2];
   return [6, 5, 4, 3, 2, 1];
-}
-
-function clearCapoNotes() {
-  for (let i = 1; i <= 6; i++) {
-    const box = document.querySelector(`.String-${i}-Note`);
-    if (box) box.textContent = "";
-  }
-  usersNotes = usersNotes.filter(n => !["1", "2", "3", "4", "5", "6"].includes(n.string));
 }
 
 box.addEventListener('mousedown', function (e) {
@@ -115,8 +111,39 @@ document.addEventListener('mousemove', function (e) {
 
   clearCapoNotes();
 
+  // Track which notes the capo covers (regardless of user overrides)
+  const newCapoState = {};
   if (notes && touchedStrings.length > 0) {
     touchedStrings.forEach((stringNumber) => {
+      if (notes[stringNumber - 1]) {
+        newCapoState[String(stringNumber)] = notes[stringNumber - 1].toLowerCase();
+      }
+    });
+  }
+  setCapoState(newCapoState);
+  setCapoFret((notes && touchedStrings.length > 0) ? fretNumber : null);
+
+  if (notes && touchedStrings.length > 0) {
+    touchedStrings.forEach((stringNumber) => {
+      const userNote = getUserNote(String(stringNumber));
+      const userFret = userNote ? userNote.fret : null;
+
+      // Skip muted strings
+      if (isStringMuted(String(stringNumber))) return;
+
+      // If user has a note selected below the capo (higher fret number), keep it
+      if (userFret !== null && userFret > fretNumber) return;
+
+      // If capo is hitting or passing a user-selected note, deselect it visually
+      if (userNote) {
+        const elements = document.getElementsByClassName(userNote.note);
+        for (let el of elements) {
+          if (el.getAttribute('data-string') === String(stringNumber)) {
+            el.style.backgroundColor = "silver";
+          }
+        }
+      }
+
       const note = notes[stringNumber - 1];
       const displayBox = document.querySelector(`.String-${stringNumber}-Note`);
 
@@ -124,12 +151,8 @@ document.addEventListener('mousemove', function (e) {
         displayBox.textContent = note;
       }
 
-    //   updateUsersNotes(note.toLowerCase(), String(stringNumber));
-    updateUsersNotes(note.toLowerCase(), String(stringNumber), "capo");
-
+      updateUsersNotes(note.toLowerCase(), String(stringNumber), "capo");
     });
-
-    displayChord();
   }
 });
 

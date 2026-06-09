@@ -66,6 +66,29 @@ body {
     
 }
 
+.mute-btn {
+    position: absolute;
+    top: -42px;
+    width: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 900;
+    color: #bbb;
+    -webkit-text-stroke: 1px #bbb;
+    cursor: pointer;
+    user-select: none;
+    z-index: 15;
+}
+
+.mute-btn[data-string="1"] { left: 13px; }
+.mute-btn[data-string="2"] { left: 35px; }
+.mute-btn[data-string="3"] { left: 57px; }
+.mute-btn[data-string="4"] { left: 79px; }
+.mute-btn[data-string="5"] { left: 101px; }
+.mute-btn[data-string="6"] { left: 123px; }
+
+.mute-btn.muted { color: red; -webkit-text-stroke: 1px red; }
+
 .nut{
     position: absolute;
     background-color: rgb(205, 203, 169);
@@ -379,7 +402,7 @@ body {
  .c:nth-of-type(5) { top: 260px; left: 79px; }
  .c:nth-of-type(6) { top: 35px; left: 101px; }
  .c:nth-of-type(7) { top: 560px; left: 101px; }
- .c:nth-of-type(8) { top: 408px; left: 123px; }
+ .c:nth-of-type(8) { top: 405px; left: 123px; }
 
  .Cs-Notes {
     position: absolute;
@@ -519,6 +542,24 @@ body {
     place-items: center;
     color: white;
     font-size: 30px;
+}
+
+.clear-btn {
+    position: absolute;
+    width: 150px;
+    height: 40px;
+    top: 535px;
+    left: 65%;
+    transform: translate(50px, 0);
+    background-color: #555;
+    color: white;
+    display: grid;
+    place-items: center;
+    border-radius: 9px;
+    font-size: 20px;
+    font-family: 'Fascinate Inline', cursive;
+    cursor: pointer;
+    user-select: none;
 }
 
 .strum{
