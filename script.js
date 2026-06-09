@@ -1,4 +1,5 @@
 import * as chords from './chords.js';
+import { playNote, playStrum } from './audio.js';
 var chromaticScale = ["a", "as", "b", "c", "cs", "d", "ds", "e", "f", "fs", "g", "gs"];
 const defaultOpenNotes = {
     "1": "e",
@@ -106,6 +107,9 @@ function createEventListeners() {
                 if (capoFret !== null && capoState[stringNum] && fret <= capoFret) {
                     return;
                 }
+
+                // Play the note audio
+                playNote(stringNum, fret);
 
                 // If string is muted, clicking a note unmutes it first
                 if (mutedStrings.has(stringNum)) {
@@ -326,7 +330,7 @@ export function displayChord() {
 // Initialize usersNotes with all open string defaults on load
 for (let i = 1; i <= 6; i++) {
     const s = String(i);
-    updateUsersNotes(defaultOpenNotes[s], s, 'default');
+    updateUsersNotes(defaultOpenNotes[s], s, 'default', 0);
 }
 
 createEventListeners();
@@ -339,6 +343,7 @@ document.querySelectorAll('.mute-btn').forEach(btn => {
 
 document.querySelector('.strum').addEventListener('click', function () {
     displayChord();
+    playStrum(usersNotes);
 });
 
 document.querySelector('.clear-btn').addEventListener('click', function () {
