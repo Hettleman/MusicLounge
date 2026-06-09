@@ -108,9 +108,6 @@ function createEventListeners() {
                     return;
                 }
 
-                // Play the note audio
-                playNote(stringNum, fret);
-
                 // If string is muted, clicking a note unmutes it first
                 if (mutedStrings.has(stringNum)) {
                     mutedStrings.delete(stringNum);
@@ -150,6 +147,9 @@ function createEventListeners() {
                 }
                 
                 
+
+                // Play the note audio (only on selection, not deselection)
+                playNote(stringNum, fret);
 
                 // Deselect any previous note on the same string
                 let oldNote = usersNotes.find(n => n.string === stringNum);
