@@ -504,10 +504,13 @@ body {
 
 .capo-text{
    position: absolute;
-   width: 80px;
-   height: 10px;
-   left: -75px;
-   top: 35px;
+   white-space: nowrap;
+   left: 157px;
+   top: 14px;
+   font-family: 'Fascinate Inline', cursive;
+   font-size: 14px;
+   color: black;
+   text-decoration: underline;
 }
 
 /*
