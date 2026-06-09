@@ -502,17 +502,6 @@ body {
     z-index: 10;
 }
 
-.capo-text{
-   position: absolute;
-   white-space: nowrap;
-   left: 157px;
-   top: 14px;
-   font-family: 'Fascinate Inline', cursive;
-   font-size: 14px;
-   color: black;
-   text-decoration: underline;
-}
-
 /*
 0 fret: 0
 1 fret: 35
@@ -531,6 +520,48 @@ body {
 14 fret: 590
 15 fret: 620
 */
+
+.instructions-box {
+    position: absolute;
+    width: 220px;
+    top: 75px;
+    right: 65%;
+    transform: translateX(-20px);
+    background-color: rgb(160, 123, 75);
+    border-radius: 15px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.instructions-top {
+    width: 100%;
+    height: 50px;
+    background-color: olive;
+    font-family: 'Fascinate Inline', cursive;
+    text-align: center;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-size: 20px;
+    box-sizing: border-box;
+}
+
+.instructions-body {
+    padding: 16px 14px;
+}
+
+.instruction-item {
+    font-family: 'Fascinate Inline', cursive;
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 18px;
+}
+
+.instruction-item:last-child {
+    margin-bottom: 0;
+}
 
 .Display{
     position: absolute;
@@ -579,7 +610,7 @@ body {
     position: absolute;
     width: 150px;
     height: 50px;
-    top: 375px;
+    top: 360px;
     left: 50px;
     background-color: red;
     color: white;
@@ -590,18 +621,27 @@ body {
     font-family: 'Fascinate Inline', cursive;
 }
 
+.chord-section-label {
+    position: absolute;
+    top: 202px;
+    left: 20px;
+    color: white;
+    font-family: 'Fascinate Inline', cursive;
+    font-size: 16px;
+}
+
 .Chord {
     position: absolute;
-    width: 125px;
-    height: 125px;
-    top: 220px;
-    left: 62px;
-    background-color:olive;
+    width: 210px;
+    height: 115px;
+    top: 225px;
+    left: 20px;
+    background-color: olive;
     color: white;
     display: grid;
     place-items: center;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 38px;
     font-family: 'Fascinate Inline', cursive;
 }
 
