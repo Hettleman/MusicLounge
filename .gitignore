@@ -1,0 +1,24 @@
+# macOS system files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Environment / secrets (if you ever add a backend or API keys)
+.env
+.env.local
+.env.*.local
+
+# Node (if you ever add npm packages)
+node_modules/
+package-lock.json
+
+# IDE / editor
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

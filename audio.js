@@ -1,5 +1,5 @@
 // audio.js — Tone.js guitar sampler
-import * as Tone from 'https://esm.sh/tone@14';
+import * as Tone from 'https://esm.sh/tone@14.7.77';
 
 // Open string MIDI notes (standard tuning)
 // String 1 = low E2, String 6 = high E4
